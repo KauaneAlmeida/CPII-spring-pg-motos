@@ -1,5 +1,6 @@
 package br.com.fiap.motos.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,16 +11,34 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
+@Entity
+@Table(name = "TB_CARACTERISTICA",
+
+        uniqueConstraints = {
+
+                @UniqueConstraint(
+                        name = "UK_CARACTERISTICA_NOME_VEICULO", columnNames = {"NOME", "VEICULO"}
+                )
+        }
+
+)
 public class Caracteristica {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_CARACTERISTICA")
+    @SequenceGenerator(name = "SQ_CARACTERISTICA", sequenceName = "SQ_CARACTERISTICA", allocationSize = 1)
+    @Column(name = "ID_CARACTERISTICA")
     private Long id;
 
-    //30 digitos
+
+    @Column(name = "NOME")
     private String nome;
 
-    //20 digitos
+
+    @Column(name = "DESC")
     private String descricao;
 
+    @Column(name = "VEICULO")
     private Veiculo veiculo;
 
 

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 public class Fabricante {
 
-    private Long id;
+    Long id;
 
     private String nome;
 
